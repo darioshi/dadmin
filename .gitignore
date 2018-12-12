@@ -2,3 +2,4 @@ runtime/*
 *.log
 .idea/*
 vendor/*
+app/database.php
