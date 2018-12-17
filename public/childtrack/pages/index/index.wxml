@@ -1,30 +1,10 @@
- <view class="container">
-    <view class="scroll-view-wrap">
-      <scroll-view scroll-x="true" class="scroll-view-catalog" scroll-with-animation="true" scroll-left="{{scrollLeft}}">
-        <view wx:key="{{index}}" class="scroll-view-item {{index === activeIndex ? 'active-catalog' : ''}}" wx:for="{{cate1Info}}"
-          id="{{item.shortName}}" bindtap="chooseCatalog" data-index="{{index}}">{{item.cate1Name}}</view>
-      </scroll-view>
-    </view>
-    <view class="content-wrap">
-      <swiper class="content-swiper-wrap" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange="swiperChange"
-        current="{{activeIndex}}">
-        <block wx:for="{{cate1Info}}" wx:key="{{index}}" wx:for-item="cataItem">
-          <swiper-item>
-            <scroll-view scroll-y class="scroll-view-content" scroll-with-animation="true">
-              <view class="weui-grids">
-                <view class="weui-grid" wx:key="{{index}}" wx:for="{{cataItem.cate2Info}}" wx:for-item="i" wx:for-index="index">
-                    <view class="weui-grid-item" bindtap="bindViewTap">
-                      <image class="catalog-item-default" src="../../assets/images/hengzhanweitu.png"></image>
-                      <image class="catalog-item-image" src="{{i.smallIcon}}" mode="aspectFill" />
-                    </view>
-                    <view class="des">
-                      <text>{{i.cate2Name}}</text>
-                    </view>
-                </view>
-              </view>
-            </scroll-view>
-          </swiper-item>
-        </block>
-      </swiper>
-    </view>
+<!--index.wxml-->
+<scroll-view class="container" scroll-y>
+<!--   <view class="search-wrapper" catchtap="toSearch">
+    <input class="search" placeholder="输入歌手名、歌曲名搜索" placeholder-style="color: #ffcd32;" disabled placeholder-class="placeholder"/>
+    <i class="icon-search"></i>
+  </view> -->
+  <view class="slider-wrapper">
+    <my-slider parent="{{is_modal_Msg}}" slider="{{slider}}"></my-slider>
   </view>
+</scroll-view>

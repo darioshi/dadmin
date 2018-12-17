@@ -1,4 +1,7 @@
 //app.js
+const wechat = require('./utils/wechat.js')
+const api = require('./api/api.js')
+
 App({
   onLaunch: function () {
     // 展示本地存储能力
