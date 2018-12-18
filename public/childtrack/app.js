@@ -36,6 +36,8 @@ App({
       }
     })
   },
+  wechat: wechat,
+  api: api,
   globalData: {
     userInfo: null
   }

@@ -1,4 +1,5 @@
 // pages/index/index.js
+var app = getApp()
 Page({
 
   /**
@@ -15,6 +16,15 @@ Page({
    */
   onLoad: function (options) {
     this.getRecommenData()
+    this.test()
+  },
+
+  test: function() {
+    var params = {
+    }
+    app.api.Childtrack_getAlbumByid(params).then(res=>{
+      console.log(res);
+    });
   },
 
   getRecommenData: function () {
