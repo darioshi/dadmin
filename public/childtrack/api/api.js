@@ -9,10 +9,10 @@ function fetchApi (api, params) {
 }
 
 //首页
-function Childtrack_getAlbumByid (params) {
-  return fetchApi('Childtrack/getAlbumByid', params).then(res => res)
+function Childtrack_getRecommend (params) {
+  return fetchApi('Childtrack/getRecommend', params).then(res => res)
 }
 
 module.exports = {
-  Childtrack_getAlbumByid,
+  Childtrack_getRecommend,
 }

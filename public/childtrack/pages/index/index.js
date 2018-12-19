@@ -16,42 +16,18 @@ Page({
    */
   onLoad: function (options) {
     this.getRecommenData()
-    this.test()
-  },
-
-  test: function() {
-    var params = {
-    }
-    app.api.Childtrack_getAlbumByid(params).then(res=>{
-      console.log(res);
-    });
   },
 
   getRecommenData: function () {
-    const _that = this
-    wx.request({
-      url: "https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg?g_tk=5381&inCharset=utf-8&outCharset=utf-8&notice=0&format=jsonp&platform=h5&uin=0&needNewCode=1&jsonpCallback=callback",
-      data: {
-        g_tk: 5381,
-        inCharset: 'utf-8',
-        outCharset: 'utf-8',
-        notice: 0,
-        format: 'jsonp',
-        platform: 'h5',
-        uin: 0,
-        needNewCode: 1,
-        jsonpCallback: 'callback'
-      },
-      success: function (res) {
-        if (res.statusCode === 200) {
-          var res1 = res.data.replace("callback(", "")
-          var res2 = JSON.parse(res1.replace(")", ""))
-          _that.setData({
-            slider: res2.data.slider,
-          })
-        }
-      }
-    })
+    var params = {
+    }
+    app.api.Childtrack_getRecommend(params).then(res=>{
+      this.setData({
+          slider: res.data.slider,
+        })
+      }).catch(e => {
+        console.error(e)
+    });
   },
 
   /**
