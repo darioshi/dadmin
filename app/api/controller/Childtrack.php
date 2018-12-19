@@ -34,23 +34,28 @@ class Childtrack extends Base
 	public function getRecommend()
 	{
 		$ret = array();
-		$slider = Db::name('child_album')->field('album_id, name, cover')->order('updateDate desc')->limit(5)->select();
+		$slider = Db::name('child_album')->field('album_id as id, name, cover as picUrl')->order('updateDate desc')->limit(5)->select();
 		$ret['slider'] = $slider;
+		$tag_map = array(
+			'gushi' => 1,
+			'donghua' => 63,
+			'kepu' => 6,
+			'mingzhu' => 43,
+			'guoxue' => 74,
+			'yingyu' => 72,
+			'huiben' => 46,
+			'jiajiao' => 5,
+			'erge' => 2,
+		);
 
-		$gushi = Db::name('child_album')->alias('a')->field('a.album_id, a.name, a.cover, a.intro')->join('child_album_tag b', 'a.album_id = b.album_id', 'LEFT')->where('b.tag_id = 1')->limit(3)->select();
-		foreach ($gushi as &$v) {
-			$v['intro'] = strip_tags($v['intro']);
+		foreach ($tag_map as $k => $v) {
+			$ret[$k] = Db::name('child_album')->alias('a')->field('a.album_id, a.name, a.cover, a.intro')->join('child_album_tag b', 'a.album_id = b.album_id', 'LEFT')->where('b.tag_id = '.$v)->order('a.updateDate desc')->limit(3)->select();
+			foreach ($ret[$k] as &$va) {
+				$va['intro'] = strip_tags($va['intro']);
+			}
 		}
-		// $erge;
-		// $donghua;
-		// $kepu;
-		// $mingzhu;
-		// $guoxue;
-		// $yingyu;
-		// $huiben;
-		// $jiajiao;
-		// $muying;
-		$this->return['data'] = $gushi;
+		
+		$this->return['data'] = $ret;
 		return json($this->return);
 	}
 
