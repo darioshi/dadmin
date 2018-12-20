@@ -9,6 +9,7 @@ Page({
     is_modal_Hidden: false,
     is_modal_Msg: '我是一个自定义组件',
     slider: [],
+    tag_list: [],
   },
 
   /**
@@ -24,6 +25,7 @@ Page({
     app.api.Childtrack_getRecommend(params).then(res=>{
       this.setData({
           slider: res.data.slider,
+          tag_list: res.data.tag_list,
         })
       }).catch(e => {
         console.error(e)

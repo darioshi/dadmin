@@ -8,52 +8,38 @@
     <my-slider parent="{{is_modal_Msg}}" slider="{{slider}}"></my-slider>
   </view>
 
-<!--   <view class="hot-list">
-    <view class="list-title">热门榜单推荐</view>
-    <view class="rank" ref="rank">
-      <view :data="topList" class="toplist" ref="toplist">
-        <view>
-          <view bindtap="_selectItemRank" data-data="{{item}}" class="item" wx:for="{{topList}}">
-            <view class="icon">
-              <image lazy-load width="100" height="100" src="{{item.picUrl}}"/>
-            </view>
-            <view class="songlist">
-              <view class="song" wx:for="{{item.songList}}">
-                <text>{{index + 1}}.</text>
-                <text>{{item.songname}}-{{item.singername}}</text>
-              </view>
-            </view>
-          </view>
+<!--   <view wx:if="{{hot}}">
+  <view wx:for="{{hot}}" wx:for-item="h" wx:key="k1">
+    <navigator url="#">
+      <view class="car_info">
+        <view class="car_pic">
+          <image src="{{h.picSrc}}"></image>
         </view>
-        <view class="loading-container" wx:if="{{!topList}}">
-          <loading></loading>
+        <view class="car_msg">
+          <view class="car_title">{{h.title}}</view>
+          <view class="car_price">指导价：{{h.price}}</view>
         </view>
       </view>
-    </view>
-  </view> -->
+    </navigator>
+  </view>
+</view> -->
 
-  <view class="tag-item">
-  	<view class="headline">
-	  	<view class="tag-name">故事</view>
-	  	<view class="tag-more">更多 ></view>
-	  </view>
-		<view class="album-item">
-		  <view class="album" >
-		  	<image src="//imagev2.xmcdn.com/group43/M02/B4/D5/wKgKklsUmyejxcNOAAYhLg1yrjI550.jpg" mode="widthFix"></image>
-	  		<view class="album-title">标题</view>
-	  		<view class="album-intro">你撒电话上帝啊就是第哦系啊</view>
-		  </view>
-		  <view class="album" >
-		  	<image src="//imagev2.xmcdn.com/group43/M02/B4/D5/wKgKklsUmyejxcNOAAYhLg1yrjI550.jpg" mode="widthFix"></image>
-		  	<view class="album-title">标题</view>
-	  		<view class="album-intro">你撒电话上帝啊就是第哦系啊</view>
-		  </view>
-		  <view class="album" >
-		  	<image src="//imagev2.xmcdn.com/group43/M02/B4/D5/wKgKklsUmyejxcNOAAYhLg1yrjI550.jpg" mode="widthFix"></image>
-		  	<view class="album-title">标题</view>
-	  		<view class="album-intro">你撒电话上帝啊就是第哦系啊</view>
-		  </view>
-		</view>
+  <view wx:if="{{tag_list}}">
+    <view class="tag-item" wx:for="{{tag_list}}" wx:for-item="li" wx:key="k">
+    	<view class="headline">
+  	  	<view class="tag-name">{{li.tag_name}}</view>
+  	  	<view class="tag-more">更多 ></view>
+  	  </view>
+  		<view class="album-item">
+        <!-- <view wx:if="{{li.data}}"> -->
+    		  <view class="album" wx:for="{{li.data}}" wx:for-item="d" wx:key="k1">
+    		  	<image src="{{d.cover}}"></image>
+    	  		<view class="album-title">{{d.name}}</view>
+    	  		<view class="album-intro">{{d.intro}}</view>
+    		  </view>
+        <!-- </view> -->
+  		</view>
+    </view>
   </view>
 
 </scroll-view>
