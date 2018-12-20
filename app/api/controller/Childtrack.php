@@ -54,11 +54,11 @@ class Childtrack extends Base
 			$tmp['tag_name'] = $v[1];
 			$tmp['data'] = Db::name('child_album')->alias('a')->field("a.album_id, a.name, a.cover, a.intro" )->join('child_album_tag b', 'a.album_id = b.album_id', 'LEFT')->where('b.tag_id = '.$v[0])->order('a.updateDate desc')->limit(3)->select();
 			foreach ($tmp['data'] as &$va) {
-				if (strlen($va['name']) > 8) {
+				if (mb_strlen($va['name'], 'utf8') > 8) {
 					$va['name'] = mb_substr($va['name'], 0, 8, 'utf-8') . '...';
 				}
 				$va['intro'] = strip_tags($va['intro']);
-				if (strlen($va['intro']) > 16) {
+				if (mb_strlen($va['intro'], 'utf8') > 16) {
 					$va['intro'] = mb_substr($va['intro'], 0, 16, 'utf-8') . '...';
 				}
 			}
